@@ -24,17 +24,17 @@ data:
         disk            sda sdb xvda xvdb;
     }
 
-#    rtc_server {
-#        enabled         on;
-#        # Listen at udp://8000
-#        listen          8000;
-#        #
-#        # The $CANDIDATE means fetch from env, if not configed, use * as default.
-#        #
-#        # The * means retrieving server IP automatically, from all network interfaces,
-#        # @see https://github.com/ossrs/srs/issues/307#issuecomment-599028124
-#        candidate       $CANDIDATE;
-#    }
+    rtc_server {
+        enabled         on;
+        # Listen at udp://8000
+        listen          8000;
+        #
+        # The $CANDIDATE means fetch from env, if not configed, use * as default.
+        #
+        # The * means retrieving server IP automatically, from all network interfaces,
+        # @see https://github.com/ossrs/srs/issues/307#issuecomment-599028124
+        candidate       $CANDIDATE;
+    }
 
     vhost __defaultVhost__ {
         http_remux {
@@ -113,6 +113,18 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: srs-udp-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: srs
+  ports:
   - name: srs-service-8000-8000
     port: 8000
     protocol: UDP
