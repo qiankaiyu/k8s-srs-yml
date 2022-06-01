@@ -25,15 +25,15 @@ data:
     }
 
     rtc_server {
-      enabled         on;
-      # Listen at udp://8000
-      listen          8000;
-      #
-      # The $CANDIDATE means fetch from env, if not configed, use * as default.
-      #
-      # The * means retrieving server IP automatically, from all network interfaces,
-      # @see https://github.com/ossrs/srs/issues/307#issuecomment-599028124
-      candidate       $CANDIDATE;
+        enabled         on;
+        # Listen at udp://8000
+        listen          8000;
+        #
+        # The $CANDIDATE means fetch from env, if not configed, use * as default.
+        #
+        # The * means retrieving server IP automatically, from all network interfaces,
+        # @see https://github.com/ossrs/srs/issues/307#issuecomment-599028124
+        candidate       $CANDIDATE;
     }
 
     vhost __defaultVhost__ {
@@ -49,7 +49,6 @@ data:
            enabled     on;
            bframe      discard;
         }
-
     }
 
 ---
