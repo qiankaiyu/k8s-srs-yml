@@ -111,6 +111,6 @@ spec:
     protocol: TCP
     targetPort: 8080
   - name: srs-service-8000-8000
-      port: 8000
-      #protocol: TCP
-      targetPort: 8000
+    port: 8000
+    #protocol: TCP
+    targetPort: 8000
