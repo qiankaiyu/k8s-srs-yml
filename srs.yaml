@@ -24,17 +24,17 @@ data:
         disk            sda sdb xvda xvdb;
     }
 
-    rtc_server {
-        enabled         on;
-        # Listen at udp://8000
-        listen          8000;
-        #
-        # The $CANDIDATE means fetch from env, if not configed, use * as default.
-        #
-        # The * means retrieving server IP automatically, from all network interfaces,
-        # @see https://github.com/ossrs/srs/issues/307#issuecomment-599028124
-        candidate       $CANDIDATE;
-    }
+#    rtc_server {
+#        enabled         on;
+#        # Listen at udp://8000
+#        listen          8000;
+#        #
+#        # The $CANDIDATE means fetch from env, if not configed, use * as default.
+#        #
+#        # The * means retrieving server IP automatically, from all network interfaces,
+#        # @see https://github.com/ossrs/srs/issues/307#issuecomment-599028124
+#        candidate       $CANDIDATE;
+#    }
 
     vhost __defaultVhost__ {
         http_remux {
@@ -75,7 +75,10 @@ spec:
           name: srs-config
       containers:
       - name: srs
-        image: ossrs/srs:3
+        #image: ossrs/srs:3
+        image: registry.cn-hangzhou.aliyuncs.com/ossrs/srs:4
+        #command:
+        #args:
         ports:
         - containerPort: 1935
         - containerPort: 1985
@@ -112,5 +115,5 @@ spec:
     targetPort: 8080
   - name: srs-service-8000-8000
     port: 8000
-    #protocol: TCP
+    protocol: UDP
     targetPort: 8000
